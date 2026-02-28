@@ -4,7 +4,6 @@
  */
 
 
-
 /*
 # Copyright 2022 University of California, Riverside
 #
@@ -508,32 +507,9 @@ int io_exit(void)
 }
 /**********************************************************************************/
 
-// Colocar o sigwaitinfo aqui!!!
-//int io_rx(void **obj){
-//    ssize_t bytes_received;
-//    struct metadata m;
-//
-//    bytes_received = recv(sockfd_sk_msg, &m, sizeof(struct metadata), 0);
-//    if (unlikely(bytes_received == -1)){
-//        log_error("recv() error: %s", strerror(errno));
-//        return -1;
-//    }
-//    *obj = m.obj;
-//    return 0;
-//}
-
-
-/**********************************************************************************/
-//uint64_t io_rx(struct http_transaction *obj, void *sigshared_ptr, sigset_t *set){
-//struct http_transaction * io_rx(struct http_transaction *obj, void *sigshared_ptr, sigset_t *set){
-//struct http_transaction * io_rx( void **obj, void *sigshared_ptr, sigset_t *set){
-
-
-//const struct timespec * restrict crono = {0 , 1000000};
 
 void io_rx( void **obj, void *sigshared_ptr, sigset_t *set){
 
-	//crono->tv_nsec = 500;
 	uint64_t addr;
 	siginfo_t data_rcv;
 
