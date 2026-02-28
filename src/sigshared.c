@@ -80,7 +80,8 @@ int fd_shm = -1;
 
 
 int mapa_sinal_fd = -1;
-char *path_fixo = "/mydata/spright/dados/mapa_sinal";
+//char *path_fixo = "/mydata/spright/dados/mapa_sinal";
+char *path_fixo = "/mydata/sigshared/dados/mapa_sinal";
 
 /********************************************************************************************/
  void *sigshared_create_mem(){

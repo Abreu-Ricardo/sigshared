@@ -840,7 +840,8 @@ static int gateway(void)
 
     printf("==gateway== mapas eBPF pinado...\n");
 
-    char *teste_path = "/mydata/spright/dados/mapa_sinal"; 
+    //char *teste_path = "/mydata/spright/dados/mapa_sinal"; 
+    char *teste_path = "/mydata/sigshared/dados/mapa_sinal"; 
     int pid_gateway = getpid();
     //int fd_map = bpf_obj_get(path);
     int fd_map = bpf_obj_get(teste_path);

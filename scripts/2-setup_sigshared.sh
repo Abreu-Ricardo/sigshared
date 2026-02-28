@@ -6,12 +6,15 @@
 # 4- bpftool v1.6
 # 5- libxdp
 
+cd /mydata
+
 # prerequisitos do LLVM
 sudo apt install -y ninja-build python3 git \
   build-essential libedit-dev libncurses5-dev zlib1g-dev \
   libxml2-dev libsqlite3-dev swig libssl-dev zlib1g zlib1g-dev
 
 ##################################################
+echo "Installing CMake..."
 # CMake
 #git clone https://github.com/Kitware/CMake
 git clone -b v4.2.0 https://github.com/Kitware/CMake
@@ -23,6 +26,7 @@ cd ../
 
 ##################################################
 # LLVM --> N TA INSTALANDO NO SISTEMA 
+echo "Installing llvm..."
 git clone --depth 1 https://github.com/llvm/llvm-project.git
 
 cd llvm-project
@@ -44,17 +48,22 @@ sudo ninja install
 cd ../../
 
 ##################################################
+echo "Installing libbpf..."
 # libbpf v1.6
 git clone -b v1.6.0 https://github.com/libbpf/libbpf
 
 cd libbpf/src
 make -j$(nproc)
 sudo make install
+echo "/usr/lib64/" | sudo tee -a /etc/ld.so.conf
+
+sudo ldconfig
 
 cd ../../
 
 ##################################################
 # BPFTOOL
+echo "Installing bpftool..."
 sudo apt install libbfd-dev libcap-dev libbpf-dev
 
 git clone -b v7.6.0 --recurse-submodules https://github.com/libbpf/bpftool
@@ -65,6 +74,7 @@ sudo make install
 cd ../../
 
 ##################################################
+echo "Installing libxdp..."
 # libxdp
 git clone --recurse-submodules https://github.com/xdp-project/xdp-tools
 
@@ -77,6 +87,15 @@ sudo ldconfig # para atribuir as alteracoes ja instaladas
 # As vezes eh necessario usar sudo ldconfig
 # para salvar as configs realizadas
 
+cd /mydata
+
+echo "export SIGSHARED=/mydata/sigshared" >> ~/.bashrc
+source ~/.bashrc
+cd /sigshared
+sudo mount -t bpf bpffs /sys/fs/bpf
+sudo mount --bind /sys/fs/bpf ./dados;
+
+echo "sudo su echo 1 > /proc/sys/kernel/bpf_stats_enabled "
 
 #################################################
 # Criar variavel do ambiente --> echo "export SIGSHARED=/mydata/spright" >> ~/.bashrc

@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 sudo apt update && sudo apt install -y flex bison build-essential dwarves libssl-dev libelf-dev \
                     libnuma-dev pkg-config python3-pip python3-pyelftools \

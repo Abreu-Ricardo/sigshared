@@ -18,13 +18,16 @@ ifneq ($(shell pkg-config --exists libconfig && echo 0), 0)
 $(error "libconfig is not installed")
 endif
 
-ifneq ($(shell pkg-config --exists libdpdk && echo 0), 0)
-$(error "DPDK is not installed")
-endif
+#ifneq ($(shell pkg-config --exists libdpdk && echo 0), 0)
+#$(error "DPDK is not installed")
+#endif
 
-CFLAGS  = $(shell pkg-config --cflags libconfig libdpdk)
-LDFLAGS = $(shell pkg-config --libs-only-L libconfig libdpdk) -L/usr/lib64
-LDLIBS  = $(shell pkg-config --libs-only-l libconfig libdpdk)
+#CFLAGS  = $(shell pkg-config --cflags libconfig libdpdk)
+CFLAGS  = $(shell pkg-config --cflags libconfig )
+#LDFLAGS = $(shell pkg-config --libs-only-L libconfig libdpdk) -L/usr/lib64
+LDFLAGS = $(shell pkg-config --libs-only-L libconfig ) -L/usr/lib64
+#LDLIBS  = $(shell pkg-config --libs-only-l libconfig libdpdk)
+LDLIBS  = $(shell pkg-config --libs-only-l libconfig )
 
 #-MP -O3 -Wall -Werror -DLOG_USE_COLOR
 CFLAGS += -Isrc/include -Isrc/cstl/inc -Isrc/log -MMD -MP -O3 -Wall -DLOG_USE_COLOR 

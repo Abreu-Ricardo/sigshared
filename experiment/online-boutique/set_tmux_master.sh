@@ -1,7 +1,8 @@
 #!/bin/bash
 
 ARCH=$1
-SPRIGHT_PATH=$2
+#SPRIGHT_PATH=$2
+SIGSHARED_PATH=$2
 
 if [ -z "$ARCH" ] ; then
   echo "Usage: $0 <ARCH> <LOAD_GEN_PATH>"
@@ -18,6 +19,7 @@ do
 done
 
 echo "Configuring fds in tmux panes..."
+#for j in {1..14}
 for j in {1..14}
 do
     #tmux send-keys -t ${j} "cd /mydata/spright/" Enter
@@ -25,6 +27,8 @@ do
     sleep 0.1
 done
 
+echo "terminou fds"
+echo "arc $ARCH"
 
 #if [ $ARCH == "s-spright" ]; then
 if [ $ARCH == "sigshared" ]; then
@@ -53,7 +57,7 @@ if [ $ARCH == "sigshared" ]; then
   tmux send-keys -t 11 "sudo ./run.sh emailservice 9" Enter
   sleep 1
   tmux send-keys -t 12 "sudo ./run.sh adservice 10" Enter
-
+fi
 sleep 0.1
 
 echo "Starting CPU usage collection..."
@@ -65,7 +69,8 @@ if [ ! -d "online-boutique-results/" ] ; then
 fi
 
 cd online-boutique-results
-if [ $ARCH == "s-spright" ]; then
+#if [ $ARCH == "s-spright" ]; then
+if [ $ARCH == "sigshared" ]; then
     pidstat 1 180 -C gateway_sigshared > sigshared_gw.cpu & pidstat 1 180 -C nf_ > sigshared_fn.cpu
 fi
 echo "CPU usage collection is done!"

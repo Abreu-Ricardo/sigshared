@@ -30,7 +30,8 @@ done
 echo "Testing the locust master in tmux pane 1..."
 #if [ $ARCH == "spright" ]; then
 if [ $ARCH == "sigshared" ]; then
-  tmux send-keys -t 1 "locust --version && echo \"Run SPRIGHT's locust master\" " Enter
+  #tmux send-keys -t 1 "locust --version && echo \"Run SPRIGHT's locust master\" " Enter
+  tmux send-keys -t 1 "locust --version && echo \"Run SIGSHARED's locust master\" " Enter
 else
   tmux send-keys -t 1 "locust --version && echo \"Run Knative's locust master\"" Enter
 fi
@@ -42,7 +43,8 @@ for j in {2..29}
 do
     #if [ $ARCH == "spright" ]; then
     if [ $ARCH == "sigshared" ]; then
-      tmux send-keys -t ${j} "locust --version && echo \"Run SPRIGHT's locust worker in pane ${j}\"" Enter
+      #tmux send-keys -t ${j} "locust --version && echo \"Run SPRIGHT's locust worker in pane ${j}\"" Enter
+      tmux send-keys -t ${j} "locust --version && echo \"Run SIGSHARED's locust worker in pane ${j}\"" Enter
     else
       tmux send-keys -t ${j} "locust --version && echo \"Run Knative's locust worker in pane ${j}\"" Enter
     fi

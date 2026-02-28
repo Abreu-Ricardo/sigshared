@@ -1,0 +1,3 @@
+NAME                                                      STATUS   ROLES           AGE     VERSION
+node0.ricsigshared.aos-ufmg-dcc831-pg0.wisc.cloudlab.us   Ready    control-plane   8m17s   v1.31.14
+node1.ricsigshared.aos-ufmg-dcc831-pg0.wisc.cloudlab.us   Ready    <none>          54s     v1.31.14
